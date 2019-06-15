@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "SpecificMALDINTimplemntation"
 output: html_notebook
 ---
 ```{r}
@@ -37,8 +37,8 @@ peaksMDI1 <- filterPeaks(peaksMDI1, minFrequency=0.25)
 
 ```
 ```{r}
-featureMatrixMDI1 <- intensityMatrix(peaksMDI)
-head(featureMatrix[, 1:3])
+featureMatrixMDI1 <- intensityMatrix(peaksMDI1)
+head(featureMatrixMDI1[, 1:3])
 ```
 
 ```{r}
@@ -59,15 +59,15 @@ head(featureMatrix[, 1:3])
   AB <- 14
 ```
 ```{r}
- plot(MDI[[1]], lwd=0.25, sub="", main="", ylab="", xlab="",
+ plot(MDI1[[1]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[1]], col="red", pch=10)
   labelPlot("A")
- plot(MDI[[2]], lwd=0.25, sub="", main="", ylab="", xlab="",
+ plot(MDI1[[2]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[2]], col="red", pch=5)
   labelPlot("B")
-  plot(MDI[[4]], lwd=0.25, sub="", main="", ylab="", xlab="",
+  plot(MDI1[[4]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[4]], col="red", pch=10)
  
@@ -81,18 +81,55 @@ head(featureMatrix[, 1:3])
   ylimDE <- c(0, 1.9e-3)
   ## line types
   lty <- c(1, 4, 2, 6)
-plot(MDI[[5]], lwd=0.25, sub="", main="", ylab="", xlab="",
+plot(MDI1[[5]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[5]], col="red", pch=10)
  labelPlot("D")
- plot(MDI[[6]], lwd=0.25, sub="", main="", ylab="", xlab="",
+ plot(MDI1[[6]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[6]], col="red", pch=10)
  labelPlot("E")
- plot(MDI[[7]], lwd=0.25, sub="", main="", ylab="", xlab="",
+ plot(MDI1[[7]], lwd=0.25, sub="", main="", ylab="", xlab="",
        xlim=c(50,300))
  points(peaksMDI1[[7]], col="red", pch=10)
  labelPlot("f")
 ```
 ```{r}
+GCMS <- importMzMl(MDD)
+```
+```{r}
+plot(GCMS[[1]])
+```
+```{r}
+GCMSp <- detectPeaks(GCMS,method = c("MAD"), halfWindowSize = 5, SNR= 0.00001 )
+plot(GCMS[[1]], xlim=c(50,300))
+points(GCMSp[[1]], col="blue", pch=10)
+```
+```{r}
+View(GCMSp)
+```
+```{r}
+peaksMDI1 <- detectPeaks(MDI1, method="MAD",
+halfWindowSize=20, SNR=15)
+plot(MDI1[[1]], xlim=c(50,300))
+points(GCMSp[[1]], col="blue", pch=10)
+points(peaksMDI1[[1]], col="red", pch=10)
 
+```
+```{r}
+MDI2 <- transformIntensity(MDI1,method= "sqrt")
+MDI2 <- smoothIntensity(MDI2, method = "SavitzkyGolay", halfWindowSize = 10)
+MDI2 <- calibrateIntensity(MDI2, method = "TIC")
+MDI2 <- alignSpectra(MDI2,SNR=0,tolerance=0.001, warpingMethod="lowess") 
+
+```
+
+```{r}
+plot(MDI2[[1]])
+```
+```{r}
+MDI3 <- transformIntensity(MDI1,method= "sqrt")
+```
+```{r}
+plot(MDI3[[1]])
+```
