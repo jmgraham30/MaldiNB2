@@ -1,0 +1,98 @@
+---
+title: ""
+output: html_notebook
+---
+```{r}
+
+library(MALDIquant)
+library(MALDIquantForeign)
+```
+
+```{r}
+setwd("~/R/MaldiNB2/RawData")
+MDD<-setwd("~/R/MaldiNB2/RawData")
+MDI1 <- importMzXml(MDD)
+```
+```{r}
+plot(MDI1[[1]])
+```
+
+
+```{r}
+noiseMDI1 <- estimateNoise(MDI1[[1]])
+plot(MDI1[[1]], xlim=c(50, 300), )
+lines(noiseMDI1, col="red")
+lines(noiseMDI1[,1]*100)
+```
+```{r}
+peaksMDI1 <- detectPeaks(MDI1, method="MAD",
+halfWindowSize=20, SNR=15)
+plot(MDI1[[1]], xlim=c(50,300))
+points(peaksMDI1[[1]], col="red", pch=10)
+```
+
+```{r}
+peaksMDI1 <- binPeaks(peaksMDI1, tolerance=0.002)
+peaksMDI1 <- filterPeaks(peaksMDI1, minFrequency=0.25)
+
+```
+```{r}
+featureMatrixMDI1 <- intensityMatrix(peaksMDI)
+head(featureMatrix[, 1:3])
+```
+
+```{r}
+ labelPlot <- function(char, cex=1.5) {
+    usr <- par("usr")
+    text(x=usr[2]-(cex*strwidth(char)),
+         y=usr[4]-(cex*strheight(char)),
+         labels=char, cex=cex)
+  }
+  
+  par(mfrow=c(2, 3))
+  par(cex=0.4)
+  par(yaxt="n")
+  par(mar=c(2.5, 1, 1, 1)) # bottom, left, top, right
+  
+  xlim <- c(1e3, 1e4)
+  ## select 1 spectra for plot A/B
+  AB <- 14
+```
+```{r}
+ plot(MDI[[1]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[1]], col="red", pch=10)
+  labelPlot("A")
+ plot(MDI[[2]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[2]], col="red", pch=5)
+  labelPlot("B")
+  plot(MDI[[4]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[4]], col="red", pch=10)
+ 
+  par(mar=c(4, 1, 1, 1)) # bottom, left, top, right
+  par(yaxt="n")
+  
+  ## select 4 spectra for plot D/E
+  DE <- c(2, 10, 14, 16)
+  ## limits for plot D/E
+  xlimDE <- c(4180, 4240)
+  ylimDE <- c(0, 1.9e-3)
+  ## line types
+  lty <- c(1, 4, 2, 6)
+plot(MDI[[5]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[5]], col="red", pch=10)
+ labelPlot("D")
+ plot(MDI[[6]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[6]], col="red", pch=10)
+ labelPlot("E")
+ plot(MDI[[7]], lwd=0.25, sub="", main="", ylab="", xlab="",
+       xlim=c(50,300))
+ points(peaksMDI1[[7]], col="red", pch=10)
+ labelPlot("f")
+```
+```{r}
+

@@ -1,0 +1,155 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+install.packages(c("MALDIquant", "MALDIquantForeign"))
+```
+
+```{r}
+library(MALDIquant)
+library(MALDIquantForeign)
+
+```
+```{r}
+s <- createMassSpectrum(mass= 1:10, intensity= 1:10 
+                        + metaData=list(name="Spectrum1"))
+```
+```{r}
+data(fiedler2009subset)
+```
+```{r}
+length(fiedler2009subset)
+
+fiedler2009subset [1:2]
+```
+```{r}
+R1 <- fiedler2009subset
+```
+Testing Same amount of DATA points
+```{r}
+any(sapply(R1,isEmpty))
+```
+```{r}
+
+table(sapply(R1,length))
+```
+```{r}
+plot(R1[[1]])
+```
+
+```{r}
+spectra <- transformIntensity(R1,method= "sqrt")
+spectra <- smoothIntensity(spectra, method = "SavitzkyGolay", halfWindowSize = 10)
+baseline <- estimateBaseline(spectra[[16]],method="SNIP", iterations = 100)
+```
+Visualization of the Variance Staqbilization, SMoothing, Baseline Correction. Use this to determine if baseline is good.
+```{r}
+plot(spectra[[16]])
+lines(baseline, col="red", lwd = 2)
+```
+```{r}
+spectra <- removeBaseline(spectra, method = "SNIP", iterations = 100)
+plot(spectra[[1]])
+```
+NMomrlaization of the intenisty values
+```{r}
+spectra <- calibrateIntensity(spectra, method = "TIC")
+```
+```{r}
+spectra <- alignSpectra(spectra, halfWindowSize=20, SNR=2,tolerance=0.002, warpingMethod="lowess")
+```
+```{r}
+samples <- factor(sapply(spectra, function(x)metaData(x)$sampleName))
+```
+```{r}
+avgSpectra <- averageMassSpectra(spectra, labels=samples, method="mean")
+```
+```{r}
+noise <- estimateNoise(avgSpectra[[1]])
+plot(avgSpectra[[1]], xlim=c(4000, 5000), ylim=c(0, 0.002))
+lines(noise, col="red")
+lines(noise[,1], noise[,2]*5, col="blue")
+```
+
+```{r}
+peaks <- detectPeaks(avgSpectra, method="MAD",
+halfWindowSize=20, SNR=6)
+plot(avgSpectra[[1]], xlim=c(4000, 5000), ylim=c(0, 0.002))
+points(peaks[[1]], col="red", pch=4)
+```
+
+```{r}
+peaks <- binPeaks(peaks, tolerance=0.002)
+```
+
+```{r}
+peaks <- filterPeaks(peaks, minFrequency=0.25)
+```
+```{r}
+featureMatrix <- intensityMatrix(peaks, avgSpectra)
+head(featureMatrix[, 1:3])
+```
+
+OK NOLANDO: You have sucessfully imported DATA here is what yyou did.
+
+```{r}
+setwd("~/R/MaldiNB2/RawData")
+MDD<-setwd("~/R/MaldiNB2/RawData")
+MDI <- importMzXml(MDD)
+```
+Recongonize you set the WD by doing it the small window on the right with  the paths just click on the more button and hit setwd. Set that to a variable and then you can import using maldiquantforiegn.
+```{r}
+View(MDI)
+length(MDI)
+```
+```{r}
+any(sapply(MDI,isEmpty))
+table(sapply(MDI,length))
+```
+```{r}
+plot(MDI[[1]])
+```
+
+```{r}
+spectraMDI <- transformIntensity(MDI,method= "sqrt")
+spectraMDI <- smoothIntensity(spectraMDI, method = "SavitzkyGolay", halfWindowSize = 10)
+baselineMDI <- estimateBaseline(spectraMDI[[1]],method="SNIP", iterations = 100)
+```
+```{r}
+plot(spectraMDI[[1]])
+lines(baselineMDI, col="red", lwd = 2)
+```
+
+```{r}
+spectraMDI <- removeBaseline(spectraMDI, method = "SNIP", iterations = 100)
+plot(spectraMDI[[1]])
+```
+```{r}
+spectraMDI <- calibrateIntensity(spectraMDI, method = "TIC")
+spectraMDI <- alignSpectra(spectraMDI,SNR=2,tolerance=0.002, warpingMethod="lowess") 
+#This is not workinb bc Referece MassPeaks object contains no peaks. Not sure if it is suggesting i have no peaks in my spectra . Maybe?
+samplesMDI <- factor(sapply(spectraMDI, function(x)metaData(x)$sampleName))
+avgSpectraMDI <- averageMassSpectra(spectraMDI, method="mean")
+```
+```{r}
+plot(spectraMDI[[1]])
+```
+```{r}
+noiseMDI <- estimateNoise(spectraMDI[[1]])
+plot(spectraMDI[[1]], xlim=c(50, 300), ylim=c(0, 0.1))
+lines(noiseMDI, col="red")
+lines(noiseMDI[,1], noiseMDI[,2]*3, col="blue")
+```
+
+
+OOK I UNDERSTAND WHAT I AM DOING NOW. SO LISTEN YOU NEED TO SCALE TO THE GRAPH. IF YOU DONT THEN NOTHING MAKES SENSE CAUSE NOTHING IN THE SCALE> LOOK AT THE X And Y axis and set accoding.
+
+```{r}
+peaksMDI <- detectPeaks(spectraMDI, method="MAD",
+halfWindowSize=20, SNR=3)
+plot(spectraMDI[[1]], xlim=c(50,300), ylim=c(0, 0.10))
+points(peaksMDI[[1]], col="red", pch=4)
+```

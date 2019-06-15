@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<mzML xmlns="http://psi.hupo.org/ms/mzml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://psi.hupo.org/ms/mzml http://psidev.info/files/ms/mzML/xsd/mzML1.1.0.xsd" id="QZAYGJVTTNCVMB-UHFFFAOYSA-N" version="0.1">
+  <cvList count="2">
+    <cv id="MS" fullName="Proteomics Standards Initiative Mass Spectrometry Ontology" version="2.26.0" URI="http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo"/>
+    <cv id="UO" fullName="Unit Ontology" version="14:07:2009" URI="http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo"/>
+  </cvList>
+  <fileDescription>
+    <fileContent>
+      <cvParam cvRef="MS" accession="MS:1000127" name="centroid spectrum" value=""/>
+    </fileContent>
+    <sourceFileList count="1">
+      <sourceFile id="_cms-498-mz-values-20190109-20465-nf7b5l.txt" name="cms-498-mz-values-20190109-20465-nf7b5l.txt" location="http://www.hmdb.cahttp://moldb.wishartlab.com/system/documents/files/001/545/354/original/cms-498-mz-values-20190109-20465-nf7b5l.txt?1547059793">
+        <cvParam cvRef="MS" accession="MS:1001369" name="text file" value=""/>
+      </sourceFile>
+    </sourceFileList>
+    <contact>
+      <cvParam cvRef="MS" accession="MS:1000586" name="contact name" value="David Wishart"/>
+      <cvParam cvRef="MS" accession="MS:1000590" name="contact organization" value="University of Alberta"/>
+      <cvParam cvRef="MS" accession="MS:1000587" name="contact address" value="University of Alberta, Edmonton, Alberta, Canada, T6G 2E8"/>
+      <cvParam cvRef="MS" accession="MS:1000588" name="contact URL" value="http://wishartlab.com"/>
+      <cvParam cvRef="MS" accession="MS:1000589" name="contact email" value="david.wishart@ualberta.ca"/>
+    </contact>
+  </fileDescription>
+  <softwareList count="1">
+    <software id="SpecDB" version="0.1">
+      <cvParam cvRef="MS" accession="MS:1000799" name="custom unreleased software tool" value="SpecDB Spectra management database"/>
+    </software>
+  </softwareList>
+  <instrumentConfigurationList count="1">
+    <instrumentConfiguration id="instrument">
+      <cvParam cvRef="MS" accession="MS:1000031" name="instrument model" value=""/>
+    </instrumentConfiguration>
+  </instrumentConfigurationList>
+  <dataProcessingList count="1">
+    <dataProcessing id="SpecDB_processing">
+      <processingMethod order="1" softwareRef="SpecDB">
+        <cvParam cvRef="MS" accession="MS:1000544" name="Conversion to mzML" value=""/>
+      </processingMethod>
+    </dataProcessing>
+  </dataProcessingList>
+  <run id="run_1" defaultInstrumentConfigurationRef="instrument" defaultSourceFileRef="_cms-498-mz-values-20190109-20465-nf7b5l.txt">
+    <spectrumList count="1" defaultDataProcessingRef="SpecDB_processing">
+      <spectrum id="file=_cms-498-mz-values-20190109-20465-nf7b5l.txt" index="0" defaultArrayLength="126">
+        <cvParam cvRef="MS" accession="MS:1000580" name="MSn spectrum" value=""/>
+        <cvParam cvRef="MS" accession="MS:1000127" name="centroid spectrum" value=""/>
+        <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" value=""/>
+        <binaryDataArrayList count="2">
+          <binaryDataArray encodedLength="1367" dataProcessingRef="SpecDB_processing">
+            <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float" value=""/>
+            <cvParam cvRef="MS" accession="MS:1000576" name="no compression" value=""/>
+            <cvParam cvRef="MS" accession="MS:1000514" name="m/z array" value="" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+            <binary>AAAAAABAVUAAAAAAAIBVQAAAAAAAwFVAAAAAAAAAVkAAAAAAAEBWQAAAAAAA
+gFZAAAAAAADAVkAAAAAAAABXQAAAAAAAQFdAAAAAAADAWEAAAAAAAABZQAAA
+AAAAQFlAAAAAAACAWUAAAAAAAMBZQAAAAAAAAFpAAAAAAABAWkAAAAAAAEBc
+QAAAAAAAgFxAAAAAAADAXEAAAAAAAABdQAAAAAAAQF1AAAAAAACAXUAAAAAA
+AMBdQAAAAAAAAF5AAAAAAABAXkAAAAAAAMBfQAAAAAAAAGBAAAAAAAAgYEAA
+AAAAAEBgQAAAAAAAYGBAAAAAAACAYEAAAAAAAKBgQAAAAAAAwGBAAAAAAADg
+YEAAAAAAAABhQAAAAAAAIGFAAAAAAACAYUAAAAAAAKBhQAAAAAAAwGFAAAAA
+AADgYUAAAAAAAABiQAAAAAAAIGJAAAAAAABAYkAAAAAAAGBiQAAAAAAAgGJA
+AAAAAACgYkAAAAAAAEBjQAAAAAAAYGNAAAAAAACAY0AAAAAAAKBjQAAAAAAA
+wGNAAAAAAADgY0AAAAAAAABkQAAAAAAAIGRAAAAAAABAZEAAAAAAAGBkQAAA
+AAAAIGVAAAAAAABAZUAAAAAAAGBlQAAAAAAAgGVAAAAAAACgZUAAAAAAAMBl
+QAAAAAAA4GVAAAAAAAAAZkAAAAAAACBmQAAAAAAAQGZAAAAAAACgZkAAAAAA
+AABnQAAAAAAAIGdAAAAAAABAZ0AAAAAAAGBnQAAAAAAAgGdAAAAAAACgZ0AA
+AAAAAMBnQAAAAAAAwGhAAAAAAADgaEAAAAAAAABpQAAAAAAAIGlAAAAAAABA
+aUAAAAAAAGBpQAAAAAAAgGlAAAAAAACgaUAAAAAAAMBpQAAAAAAAoGpAAAAA
+AADAakAAAAAAAOBqQAAAAAAAAGtAAAAAAAAga0AAAAAAAEBrQAAAAAAAYGtA
+AAAAAACAa0AAAAAAAKBsQAAAAAAAwGxAAAAAAADgbEAAAAAAAABtQAAAAAAA
+IG1AAAAAAABAbUAAAAAAAIBuQAAAAAAAwG5AAAAAAAAAb0AAAAAAAEBwQAAA
+AAAAUHBAAAAAAABgcEAAAAAAAHBwQAAAAAAAAHFAAAAAAAAQcUAAAAAAACBx
+QAAAAAAAMHFAAAAAAABAcUAAAAAAAFBxQAAAAAAA8HFAAAAAAAAAckAAAAAA
+ABByQAAAAAAAIHJAAAAAAAAwckAAAAAAAOByQAAAAAAA8HJAAAAAAAAAc0AA
+AAAAABBzQAAAAAAAcHdAAAAAAACAd0AAAAAAAJB3QAAAAAAAoHdAAAAAAACw
+d0AAAAAAAIB4QAAAAAAAkHhA
+</binary>
+          </binaryDataArray>
+          <binaryDataArray encodedLength="1367" dataProcessingRef="SpecDB_processing">
+            <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float" value=""/>
+            <cvParam cvRef="MS" accession="MS:1000576" name="no compression" value=""/>
+            <cvParam cvRef="MS" accession="MS:1000515" name="intensity array" value="" unitCvRef="MS" unitAccession="MS:1000131" unitName="number of counts"/>
+            <binary>+pW6o4BmcD8vx7Ak53bQPxXdShT5rJs/N44g4fCMhj94O6nMIIB0P/qVuqOA
+ZmA/9+CX9cCZaD/6lbqjgGZQP/qVuqOAZlA/+pW6o4BmYD/0efQeYbO8PzeO
+IOHwjJY/qmrYqLTpoD+56DG4UHOCP/qVuqOAZmA/+pW6o4BmUD/6lbqjgGZw
+P/qVuqOAZnA/WT/2rehskT+2Mw8KkaaKPzeOIOHwjJY/eDupzCCAdD/34Jf1
+wJloP/qVuqOAZlA/+pW6o4BmUD/6lbqjgGZgP7YzDwqRpoo/2OTk1oiGlT83
+jiDh8IymP3g7qcwggJQ/+pW6o4BmgD/6lbqjgGZwP/qVuqOAZmA/+pW6o4Bm
+YD/6lbqjgGZQP/qVuqOAZlA/+pW6o4BmUD/6lbqjgGZgP/qVuqOAZoA/uegx
+uFBzgj802f0yMcCOP/fgl/XAmXg/iLkC3LwJpj94O6nMIICEP/qVuqOAZnA/
++pW6o4BmUD/6lbqjgGZgP/qVuqOAZlA/eDupzCCAdD/6lbqjgGZgP7noMbhQ
+c4I/+pW6o4BmcD/34Jf1wJl4P/fgl/XAmWg/+pW6o4BmYD/6lbqjgGZQP/qV
+uqOAZlA/9+CX9cCZeD/6lbqjgGZgP/qVuqOAZpA/9+CX9cCZeD8AAAAAAADw
+P+q1guqLcsc/V9hS14iGtT94O6nMIICEP/qVuqOAZmA/+pW6o4BmUD/34Jf1
+wJloP/qVuqOAZmA/9+CX9cCZeD/34Jf1wJloPxXdShT5rJs/9+CX9cCZeD/3
+4Jf1wJloP/qVuqOAZlA/+pW6o4BmUD/6lbqjgGZwP/qVuqOAZmA/NNn9MjHA
+jj94O6nMIIB0P3WGhh5hs3w/+pW6o4BmYD/6lbqjgGZQP/qVuqOAZlA/+pW6
+o4BmUD/6lbqjgGZgP3WGhh5hs3w/9+CX9cCZaD/nYj7mJBCnP7YzDwqRpoo/
++pW6o4BmcD/6lbqjgGZQP/qVuqOAZnA/+pW6o4BmcD94O6nMIIB0P/fgl/XA
+mWg/+pW6o4BmUD/6lbqjgGZQP/qVuqOAZmA/+pW6o4BmYD/6lbqjgGZwP/qV
+uqOAZmA/+pW6o4BmYD/6lbqjgGZQP/qVuqOAZlA/+pW6o4BmUD/6lbqjgGZg
+P/qVuqOAZlA/9+CX9cCZaD/6lbqjgGZQP/qVuqOAZlA/+pW6o4BmYD91hoYe
+YbOMP/fgl/XAmXg/+pW6o4BmYD/6lbqjgGZQP/qVuqOAZoA/9+CX9cCZaD/6
+lbqjgGZQP/qVuqOAZlA/+pW6o4BmYD/6lbqjgGaQP3WGhh5hs3w/9+CX9cCZ
+aD/34Jf1wJloP/qVuqOAZlA/
+</binary>
+          </binaryDataArray>
+        </binaryDataArrayList>
+      </spectrum>
+    </spectrumList>
+  </run>
+</mzML>
